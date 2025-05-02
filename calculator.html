@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Care Cost Calculator | PetAdopt</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">PetAdopt</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pets.html">Available Pets</a></li>
+        <li><a href="calculator.html">Cost Calculator</a></li>
+        <li><a href="adopt.html">Adopt</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="page-heading">
+    <h1>Pet Care Cost Calculator</h1>
+    <p>Estimate monthly care costs for your future furry friend.</p>
+  </section>
+  <section class="calculator">
+    <form id="costForm">
+      <label for="petType">Pet Type:</label>
+      <select id="petType" required>
+        <option value="">Select</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="rabbit">Rabbit</option>
+      </select>
+      <label for="petSize">Size:</label>
+      <select id="petSize" required>
+        <option value="">Select</option>
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
+      <label for="petAge">Age (years):</label>
+      <input type="number" id="petAge" min="0" max="25" required>
+      <button type="submit" class="btn">Calculate</button>
+    </form>
+    <div id="result"></div>
+  </section>
+  <footer>
+    <p>&copy; 2025 PetAdopt. All rights reserved.</p>
+    <p>Email: info@petadopt.com | Phone: (03) 1234 5678</p>
+  </footer>
+  <script>
+    document.getElementById('costForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const type = document.getElementById('petType').value;
+      const size = document.getElementById('petSize').value;
+      const age = parseInt(document.getElementById('petAge').value);
+      let baseCost = 0;
+      if (type === 'dog') baseCost = 80;
+      else if (type === 'cat') baseCost = 60;
+      else if (type === 'rabbit') baseCost = 40;
+      if (size === 'medium') baseCost *= 1.2;
+      else if (size === 'large') baseCost *= 1.5;
+      if (age < 1) baseCost += 20;
+      else if (age > 8) baseCost += 30;
+      document.getElementById('result').innerHTML = `<h3>Estimated Monthly Cost: $${baseCost.toFixed(2)}</h3>`;
+    });
+  </script>
+</body>
+</html>
